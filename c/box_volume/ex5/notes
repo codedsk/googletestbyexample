@@ -1,0 +1,9 @@
+Example showing test fixtures
+1. Use test fixtures when you have code being repeated for each test case
+2. Create a new class that will hold the fixture's shared data. Name it FooTest as practice. Derive the public interface from the testing::Test Class.
+3. Each test case gets a new BoxTest object, so previous test cases dont affect future test cases
+4. Shared data members must be public or protected so the fixture can access them.
+5. Use the SetUp() method to initialize the data members and perform the common setup code.
+6. Use the TearDown() method to clean up or destroy objects created in SetUp() method.
+7. Use TEST_F instead of TEST macro
+8. First argument of the TEST_F macro is the name of the class holding the fixture's data.
