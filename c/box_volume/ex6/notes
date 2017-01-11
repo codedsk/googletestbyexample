@@ -1,0 +1,31 @@
+Repeatedly running tests
+This is done with command line flags to the test program. The flags we are interested in include:
+  --gtest_filter=<test string>
+  --gtest_break_on_failure
+  --gtest_repeat=2
+
+
+Tests can be filtered using the --gtest_filter flag. The flag accepts a single string value that uses *'s, :'s, and -'s to help specify a filter for which tests to run.
+
+* is the wildcard character and matches all text
+
+Examples:
+
+./tests --gtest_filter=*                        runs all tests
+./tests --gtest_filter=BoxTest.*                runs all tests that are a part of the BoxTest suite.
+./tests --gtest_filter=BoxTest.*Dimension*      runs all tests in the BoxTest suite with "Dimension" in their name
+
+
+: is used to separate filters
+
+Examples:
+
+./tests --gtest_filter=BoxTest.*Copy:BoxTest.Operator*      runs all tests in the BoxTest suite that end in "Copy" or start with "Operator"
+
+
+- is used to remove tests from a filtered list.
+
+Examples:
+
+./tests --gtest_filter=BoxTest.*-BoxTest.Constructor*       runs all tests in the BoxTest suite except those starting with "Constructor"
+

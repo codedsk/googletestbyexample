@@ -1,0 +1,22 @@
+Using the --gtest_break_on_failure flag, users can run their program under gdb and gtest will raise a segmentation fault when a test fails, dropping the program into the gdb debugger.
+
+Example:
+
+$ gdb ./tests
+...
+(gdb) run --gtest_filter=*Five* --gtest_break_on_failure
+Using host libthread_db library "/lib/x86_64-linux-gnu/libthread_db.so.1".
+Note: Google Test filter = *Five*
+[==========] Running 1 test from 1 test case.
+[----------] Global test environment set-up.
+[----------] 1 test from Corrupt
+[ RUN      ] Corrupt.DoReturnFive
+tests.cc:9: Failure
+      Expected: 0
+To be equal to: do_return_five()
+      Which is: 5
+
+Program received signal SIGSEGV, Segmentation fault.
+0x00007ffff7b86aa0 in testing::UnitTest::AddTestPartResult(testing::TestPartResult::Type, char const*, int, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+    () from /opt/googletest/1.8.0/lib/libgtest.so
+(gdb)
